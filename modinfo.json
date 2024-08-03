@@ -1,0 +1,13 @@
+{
+    type: "code",
+    modid: "vsglobal",
+    name: "VSG: Core",
+    authors: ["Lila"],
+    description: "Global networking framework.",
+    version: "1.0.0",
+    dependencies: {
+        game: "1.19.8"
+    },
+    side: "Client",
+    requiredOnServer: false
+}

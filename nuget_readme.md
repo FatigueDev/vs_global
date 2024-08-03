@@ -1,0 +1,2 @@
+VSGlobal is a framework to allow clientside-only networking using the VSGlobal's websocket server.
+Docs can be found at: [https://fatiguedev.github.io/vs_global_docs/](https://fatiguedev.github.io/vs_global_docs/)
