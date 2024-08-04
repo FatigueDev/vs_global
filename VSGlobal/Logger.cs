@@ -1,19 +1,16 @@
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.Extensions.Logging;
 using Vintagestory.API.Client;
 
 namespace VSGlobal
 {
-	/// <exclude />
-	public class Logger : ILogger
+    /// <exclude />
+    public class Logger : ILogger
 	{
-		private ICoreClientAPI api;
-		private string logFilePath;
+		private readonly string logFilePath;
 		
 		public Logger(ICoreClientAPI api)
 		{
-			this.logFilePath = Path.Combine(api.DataBasePath, "Logs", "client-vsglobal.txt");
-			this.api = api;
+			logFilePath = Path.Combine(api.DataBasePath, "Logs", "client-vsglobal.txt");
 			
 			if(File.Exists(logFilePath))
 			{
@@ -28,7 +25,6 @@ namespace VSGlobal
 
 		public bool IsEnabled(LogLevel logLevel)
 		{
-			// throw new NotImplementedException();
 			return false;
 		}
 
@@ -44,7 +40,7 @@ namespace VSGlobal
 			}).Invoke();
 		}
 		
-		private Action ReturnPattern() => () => { return; };
+		private Action ReturnPattern() => () => {};
 		private Action RedactPattern()
 		{
 			return () => {

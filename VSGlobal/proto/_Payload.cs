@@ -5,22 +5,22 @@ using Vintagestory.API.Util;
 
 namespace VSGlobal.Proto
 {
-	[ProtoBuf.ProtoContract()]
+	[ProtoContract()]
 	public partial class Payload
 	{
-		[ProtoBuf.ProtoMember(1)]
+		[ProtoMember(1)]
 		[System.ComponentModel.DefaultValue("")]
-		public string Module { get; set; } = "";
+		public string Module { get; set; }
 
-		[ProtoBuf.ProtoMember(2)]
+		[ProtoMember(2)]
 		[System.ComponentModel.DefaultValue(false)]
-		public string Event { get; set; } = "";
+		public string Event { get; set; }
 
-		[ProtoBuf.ProtoMember(3)]
+		[ProtoMember(3)]
 		[System.ComponentModel.DefaultValue("")]
 		public string PacketType { get; set; } = "";
 
-		[ProtoBuf.ProtoMember(4)]
+		[ProtoMember(4)]
 		public byte[] PacketValue { get; set; }
 
 		public Payload() : this("", "") { }

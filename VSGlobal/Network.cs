@@ -1,13 +1,6 @@
-// using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Encodings.Web;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
-using ProtoBuf;
 using Vintagestory.API.Client;
-using Vintagestory.API.Common;
-using Vintagestory.API.Util;
 using VSGlobal.EventArguments;
 using VSGlobal.Proto;
 using WebSocketSharper;
@@ -54,7 +47,7 @@ namespace VSGlobal
 		{
 			WebSocket ws = VSGlobal.Internals.NetworkInternals._GetClientWebsocket();
 			
-			if(ws.IsAlive == false) return;
+			if(!ws.IsAlive) return;
 			
 			await ws.SendTaskAsync(new Payload("broadcast", module).Serialize(packet));				
 		}
@@ -68,7 +61,7 @@ namespace VSGlobal
 		{
 			WebSocket ws = VSGlobal.Internals.NetworkInternals._GetClientWebsocket();
 			
-			if(ws.IsAlive == false) return;
+			if(!ws.IsAlive) return;
 			
 			await ws.SendTaskAsync(new Payload("subscribe", module).Serialize());
 		}
@@ -80,6 +73,7 @@ namespace VSGlobal
 		public static class NetworkInternals
 		{
 			private static WebSocket webSocket;
+			private const string coreModuleId = "core";
 
 			/// <exclude />
 			public static WebSocket _GetClientWebsocket()
@@ -104,7 +98,7 @@ namespace VSGlobal
 				sb.Append("&auth_token=");
 				sb.Append(authToken);
 				sb.Append("&module=");
-				sb.Append(UrlEncoder.Default.Encode(_GetDefaultModuleName()));
+				sb.Append(UrlEncoder.Default.Encode(coreModuleId));
 				
 				if(localConnect)
 				{
@@ -141,7 +135,6 @@ namespace VSGlobal
 				else
 				{
 					api.Logger.Error("VsGlobal couldn't find your Auth Key! Contact the dev!");
-					return;
 				}
 			}
 
@@ -172,12 +165,6 @@ namespace VSGlobal
 						payload = Payload.Deserialize(msg.RawData, msg.RawData.Count())
 					});
 				};
-			}
-
-			/// <exclude />
-			public static string _GetDefaultModuleName()
-			{
-				return "core";
 			}
 
 			private static void _PushMainThreadTask(ICoreClientAPI api, Action callback)

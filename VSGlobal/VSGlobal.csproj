@@ -11,13 +11,15 @@
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReadmeFile>nuget_readme.md</PackageReadmeFile>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Lila</Authors>
-    <ProjectUrl>https://github.com/FatigueDev/vs_global</ProjectUrl>
+    <RepositoryUrl>https://github.com/FatigueDev/vs_global</RepositoryUrl>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="../nuget_readme.md" Pack="true" PackagePath="/"/>
+    <None Include="../license.txt" Pack="true" PackagePath="/"/>
     <Reference Include="VintagestoryAPI">
       <HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
       <Private>false</Private>

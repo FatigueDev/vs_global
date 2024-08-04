@@ -1,10 +1,9 @@
 using Vintagestory.API.Client;
-using Vintagestory.API.Common;
 
 namespace VSGlobal
 {
-	/// <exclude />
-	public static class AuthToken
+    /// <exclude />
+    public static class AuthToken
 	{
 		private static string GetModDataPath(ICoreClientAPI capi)
 		{
@@ -21,7 +20,7 @@ namespace VSGlobal
 			using(StreamWriter stream = File.CreateText(fullPath))
 			{
 				stream.Write(token);
-			};
+			}
 		}
 		
 		private static Guid GetToken(string fullPath)
